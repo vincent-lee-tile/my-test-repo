@@ -16,7 +16,7 @@ jobs:
       id: bump_version_push_tag
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        WITH_V: true
+        WITH_V: false
         INITIAL_VERSION: 1.0.0
 
     - name: Create and publish release
