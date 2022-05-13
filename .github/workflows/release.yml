@@ -15,8 +15,8 @@ jobs:
       uses: mathieudutour/github-tag-action@v6.0
       id: bump_version_push_tag
       with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: minor
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        default_bump: minor
 
     - uses: ncipollo/release-action@v1
       with:
