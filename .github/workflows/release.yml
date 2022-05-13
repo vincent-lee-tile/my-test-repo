@@ -22,4 +22,3 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: ${{ steps.bump_version_push_tag.outputs.new_tag }}
-        generateReleaseNotes: true
