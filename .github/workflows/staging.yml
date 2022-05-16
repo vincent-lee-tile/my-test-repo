@@ -36,5 +36,5 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Test
-        run: echo "deploy!"
+        run: echo "deploy! ${{ jobs.bump-version.outputs }}"
 
