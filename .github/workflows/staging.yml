@@ -38,9 +38,3 @@ jobs:
       - name: Test
         run: echo "deploy!"
 
-  tag-sentry:
-    needs: deploy-staging
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
