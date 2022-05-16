@@ -27,9 +27,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Log new version
-        run: echo "New version - ${{ steps.bump_version_push_tag.outputs.new_tag }}"
-    
   deploy-staging:
     needs: bump-version
     runs-on: ubuntu-latest
