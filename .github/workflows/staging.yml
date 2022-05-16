@@ -2,8 +2,8 @@ name: Staging Deployment
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 jobs:
@@ -14,11 +14,8 @@ jobs:
         shell: bash
 
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Bump version and push tag
-      uses: mathieudutour/github-tag-action@v6.0
-      id: bump_version_push_tag
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        default_bump: patch
+      - name: Test
+        run: echo "deploy!"
