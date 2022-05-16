@@ -2,8 +2,6 @@ name: Staging Deployment
 
 on:
   push:
-    branches:
-    - main
     tags:
     - v*
   workflow_dispatch:
