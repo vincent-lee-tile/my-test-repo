@@ -3,7 +3,6 @@ name: Staging Deployment
 on:
   push:
     tags:
-      - main
   workflow_dispatch:
 
 jobs:
