@@ -1,13 +1,30 @@
 name: Staging Deployment
 
 on:
-  create:
-    tags:
-      - 'v*'
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    defaults:
+      run: 
+        shell: bash
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@v6.0
+        id: bump_version_push_tag
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+    
   deploy-staging:
+    needs: bump-version
     runs-on: ubuntu-latest
     defaults:
       run:
