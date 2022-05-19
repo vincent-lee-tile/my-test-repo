@@ -9,11 +9,18 @@ jobs:
 
   publish-release:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - uses: release-drafter/release-drafter@v5.19.0
+        id: release-drafter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           publish: true
+
+      - name: echo release ID
+        run: echo "release id - ${{ steps.release-drafter.outputs.id }}"
