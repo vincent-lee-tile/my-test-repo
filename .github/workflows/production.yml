@@ -32,7 +32,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.0
         id: bump-version
         with:
-          github_token: ${{ secrets.GH_ACTION_TAGGING_PA_TOKEN }}
+          github_token: ${{ secrets.GH_ACTION_PA_TOKEN }}
 
   tag-sentry:
     needs: [bump-version]
