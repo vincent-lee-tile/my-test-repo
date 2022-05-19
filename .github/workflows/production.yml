@@ -14,27 +14,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-
-  publish-release:
+  bump-version:
     needs: [deploy-production]
     runs-on: ubuntu-latest
-
     defaults:
       run:
         shell: bash
 
     outputs:
-      new_tag: ${{ steps.publish-release.outputs.tag_name }}
-      
+      new_tag: ${{ steps.bump-version.outputs.new_tag }}
+
     steps:
-      - uses: release-drafter/release-drafter@v5.19.0
-        id: publish-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          publish: true
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@v6.0
+        id: bump-version
+        with:
+          github_token: ${{ secrets.GH_ACTION_TAGGING_PA_TOKEN }}
 
   tag-sentry:
-    needs: [publish-release]
+    needs: [bump-version]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -44,4 +45,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Test
-        run: echo "deploy production! ${{ needs.publish-release.outputs.new_tag }}"
+        run: echo "deploy production! ${{ needs.bump-version.outputs.new_tag }}"
