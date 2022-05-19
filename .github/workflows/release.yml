@@ -9,14 +9,11 @@ jobs:
 
   publish-release:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: release-drafter/release-drafter@v5.19.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          publish: true
