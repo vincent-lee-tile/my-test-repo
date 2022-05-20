@@ -15,8 +15,9 @@ jobs:
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          configuration: "changelog-builder-configuration.json"
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
