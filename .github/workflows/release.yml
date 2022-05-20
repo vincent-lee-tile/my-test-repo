@@ -17,7 +17,7 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          configuration: "changelog-builder-configuration.json"
+          configuration: ".github/changelog-builder-configuration.json"
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
